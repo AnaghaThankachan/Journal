@@ -1,0 +1,87 @@
+<!-- account/templates/account/add_statement.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Bank Statement</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            color: #333;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>MyAccount</h2>
+    
+    <form method="post">
+        {% csrf_token %}
+        
+        <label for="description">Particulars:</label>
+        <input type="text" name="dcn" required>
+        
+        <label for="amount">Amount:</label>
+        <input type="number" name="amount" step="0.01" required>
+        
+        <label for="date">Date:</label>
+        <input type="date" name="date" required>
+        
+        <label for="transaction_type">Transaction Type:</label>
+        <select name="transaction_type" required>
+            <option value="1">Debit</option>
+            <option value="0">Credit</option>
+        </select>
+        
+        <input type="submit" value="Add Statement">
+    </form>
+    
+    <a href="{% url 'journal_entry_list' %}">Go to Journal Entry List</a>
+</body>
+</html>
